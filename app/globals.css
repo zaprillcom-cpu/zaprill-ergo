@@ -1,26 +1,149 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-ergo-navy: #0f2b5d;
+  --color-ergo-navy-deep: #091b3a;
+  --color-ergo-navy-surface: #133672;
+  --color-ergo-mint: #16c5a6;
+  --color-ergo-mint-hover: #12a88e;
+  --color-ergo-slate: #939fb5;
+  --color-ergo-forest: #174f39;
+  --color-ergo-lime: #d7ed9e;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #f8fafc;
+    --foreground: #091b3a;
+    --card: #ffffff;
+    --card-foreground: #091b3a;
+    --popover: #ffffff;
+    --popover-foreground: #091b3a;
+    --primary: #16c5a6;
+    --primary-hover: #12a88e;
+    --primary-foreground: #091b3a;
+    
+    /* ERGO Brand Identity (from official logo & Zaprill hierarchy) */
+    --ergo-navy: #0f2b5d;
+    --ergo-navy-deep: #091b3a;
+    --ergo-navy-surface: #133672;
+    --ergo-mint: #16c5a6;
+    --ergo-mint-hover: #12a88e;
+    --ergo-slate: #939fb5;
+    --ergo-forest: #174f39;
+    --ergo-lime: #d7ed9e;
+
+    /* Legacy compatibility aliases pointed to new executive palette */
+    --ergo-purple: #0f2b5d;
+    --ergo-secondary: #16c5a6;
+    --ergo-accent: #939fb5;
+
+    --secondary: #f1f5f9;
+    --secondary-foreground: #091b3a;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #16c5a6;
+    --radius: 0.75rem;
+
+    /* Authenticated Executive Shell (Deep Midnight Navy) */
+    --sidebar-bg: #091b3a;
+    --sidebar-surface: #0f2b5d;
+    --sidebar-text: #939fb5;
+    --sidebar-active: #ffffff;
+    --sidebar-border: rgba(147, 159, 181, 0.18);
+    --sidebar-primary: #16c5a6;
+
+    /* Semantic Accents */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #0284c7;
+  }
+
+  .dark {
+    --background: #061124;
+    --foreground: #f8fafc;
+    --card: #091b3a;
+    --card-foreground: #f8fafc;
+    --popover: #091b3a;
+    --popover-foreground: #f8fafc;
+    --primary: #16c5a6;
+    --primary-hover: #12a88e;
+    --primary-foreground: #061124;
+    
+    --ergo-navy: #0f2b5d;
+    --ergo-navy-deep: #061124;
+    --ergo-navy-surface: #133672;
+    --ergo-mint: #16c5a6;
+    --ergo-mint-hover: #12a88e;
+    --ergo-slate: #939fb5;
+    --ergo-forest: #174f39;
+    --ergo-lime: #d7ed9e;
+
+    --ergo-purple: #16c5a6;
+    --ergo-secondary: #0f2b5d;
+    --ergo-accent: #939fb5;
+
+    --secondary: #0f2b5d;
+    --secondary-foreground: #f8fafc;
+    --muted: #0c2044;
+    --muted-foreground: #939fb5;
+    --border: #1a3b6d;
+    --input: #1a3b6d;
+    --ring: #16c5a6;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Print Styles for Capability Passport */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print,
+  nav,
+  aside,
+  header,
+  .demo-banner,
+  button:not(.print-include) {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-page {
+    box-shadow: none !important;
+    border: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  @page {
+    margin: 1.5cm;
+    size: auto;
+  }
 }
